@@ -1,5 +1,12 @@
+<% include partials/headers %>
+
 <h1>Create a new camp ground</h1>
 
 <form action="/campgrounds" method="POST">
-<input type="text" name="name" placeholder="Enter Campname">
+    <input type="text" name="name" placeholder="Enter Campname...">
+    <input type="text" name="image" placeholder="Image Url ..">
+    <button type="submit" class="btn btn-danger" ">Submit</button>
 </form>
+
+
+<% include partials/footer %>

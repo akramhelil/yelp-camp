@@ -27,10 +27,11 @@ app.get('/campgrounds', (req, res) => {
 app.post('/campgrounds', (req, res) => {
     // get data from the form and add to the campgroudns
     // rediret to the camgrounds
+    console.log('POSTED')
 });
 
-app.get('/camgrounds/new', (res, req) => {
-    res.render('new')
+app.get('/campgrounds/new', (req, res) => {
+    res.render('new');
 });
 
 app.listen(PORT, console.log('Server is Started on Port', PORT))
