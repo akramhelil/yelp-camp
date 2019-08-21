@@ -25,7 +25,6 @@ app.get('/', (req, res) => {
 
 app.get('/campgrounds', (req, res) => {
     res.render('campgrounds', {campgrounds: campgrounds});
-
 });
 // make the route to the convintion as REST restful toutes 7 convention
 app.post('/campgrounds', (req, res) => {
