@@ -16,18 +16,6 @@ const campgroundSchema = new mongoose.Schema({
 
 const Campground = mongoose.model('Campground', campgroundSchema)
 
-// Campground.create({
-//     name: "MC Park",
-//     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkm74HV67ZUNWNNnA5HpqfrfLcyUrcZGA2n0NYJH0VbKgBP5rFcA"
-// }, (err, newCampGround) => {
-//         if (err) {
-//             console.log("SOmething Went Wrong Try again", err)
-//         } else {
-//             console.log("New Camp Ground is created", newCampGround )
-//         }
-// } )
-
-
 
 app.get('/', (req, res) => {
     res.render('landing');
@@ -37,8 +25,7 @@ app.get('/campgrounds', (req, res) => {
     Campground.find({}, (err, allCampgrounds) => {
         if (err) {
             console.log('SOmething went wrong', err)
-        } else {
-            
+        } else { 
             res.render('campgrounds', {campgrounds: allCampgrounds});
         }
     })
@@ -51,7 +38,8 @@ app.post('/campgrounds', (req, res) => {
     let image = req.body.image
     let newCampGround = {
         name: name,
-        image: image
+        image: image, 
+
     }
     Campground.create(newCampGround, (err, newCampgtound) => {
         if (err) {
