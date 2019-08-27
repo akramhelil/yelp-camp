@@ -11,7 +11,8 @@ mongoose.connect('mongodb://localhost/yelpcamp', { useNewUrlParser: true });
 // setup schema 
 const campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    des: String
 });
 
 const Campground = mongoose.model('Campground', campgroundSchema)
@@ -30,16 +31,17 @@ app.get('/campgrounds', (req, res) => {
         }
     })
 });
-// make the route to the convintion as REST restful toutes 7 convention
+// make the route to the convintion as REST restful routes 7 convention
 app.post('/campgrounds', (req, res) => {
     
     // get data from the form and add to the campgroudns
     let name = req.body.name
     let image = req.body.image
+    let des = req.body.des
     let newCampGround = {
         name: name,
-        image: image, 
-
+        image: image,
+        des: des
     }
     Campground.create(newCampGround, (err, newCampgtound) => {
         if (err) {
@@ -52,9 +54,16 @@ app.post('/campgrounds', (req, res) => {
 });
 
 
+
+
 // Create Form Render 
 app.get('/campgrounds/new', (req, res) => {
     res.render('new');
+});
+
+app.get('/campgrounds/:id', (req, res) => {
+    // find the campground with the id and show it to the
+    res.send("this will be the show page one day");
 });
 
 app.listen(PORT, console.log('Server is Started on Port', PORT))
