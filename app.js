@@ -27,7 +27,7 @@ app.get('/campgrounds', (req, res) => {
         if (err) {
             console.log('SOmething went wrong', err)
         } else { 
-            res.render('campgrounds', {campgrounds: allCampgrounds});
+            res.render('index', {campgrounds: allCampgrounds});
         }
     })
 });
@@ -54,16 +54,20 @@ app.post('/campgrounds', (req, res) => {
 });
 
 
-
-
-// Create Form Render 
+// Create Form Render  
 app.get('/campgrounds/new', (req, res) => {
     res.render('new');
 });
-
+// SHOW
 app.get('/campgrounds/:id', (req, res) => {
     // find the campground with the id and show it to the
-    res.send("this will be the show page one day");
+    Campground.findById(req.params.id, (err, foundCampground) => {
+        if (err) {
+            console.log("Something Went Wrong")
+        } else {
+            res.render("show", { campground: foundCampground });
+        }
+    })
 });
 
 app.listen(PORT, console.log('Server is Started on Port', PORT))
