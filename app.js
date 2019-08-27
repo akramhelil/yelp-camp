@@ -3,18 +3,21 @@ const app = express();
 const bodyParser = require('body-parser');
 const PORT = 3000;
 const mongoose = require('mongoose')
-
+// using ejs on the front end view engine
 app.set('view engine', 'ejs');
+// this need to take a look into why
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // connect mongoose to our local database
 mongoose.connect('mongodb://localhost/yelpcamp', { useNewUrlParser: true });
-// setup schema 
+
+// setup schema
 const campgroundSchema = new mongoose.Schema({
     name: String,
     image: String,
     des: String
 });
-
+// setup the model
 const Campground = mongoose.model('Campground', campgroundSchema)
 
 
@@ -54,7 +57,7 @@ app.post('/campgrounds', (req, res) => {
 });
 
 
-// Create Form Render  
+// Create Form Render new has to before the show routes
 app.get('/campgrounds/new', (req, res) => {
     res.render('new');
 });
